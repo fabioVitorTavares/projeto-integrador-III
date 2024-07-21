@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastro de usuários</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="./script.js"></script>
+        <script>
+          const senha = window.prompt("Entre com a senha de admin:")
+          if(senha != "admin"){
+            window.location = "/"
+          }
+        </script>
+    </head>
+    <body>
+        <h1>Cadastros</h1>
+        <div id="cadastros">
+
+        </div>        
+    </body>
+    <script>
+      const cpfs = JSON.parse(window.localStorage.getItem("cpfs"));
+      if (cpfs) {
+        for(cpf of cpfs){
+           const obj = JSON.parse(window.localStorage.getItem(cpf))
+      
+          if (obj) {            
+            const container = document.getElementById("cadastros");
+            for (const atr in obj) {
+              const strong = document.createElement("strong");
+              const titulo = document.createElement("span");
+              titulo.innerText = `${atr.toLocaleUpperCase()}:`;
+              const valor = document.createElement("span");
+              valor.innerText = ` ${obj[atr]}`;
+              const div = document.createElement("div");
+              strong.appendChild(titulo);
+              div.appendChild(strong);
+              div.appendChild(valor);
+              container.appendChild(div);
+            }     
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("br"));
+          } 
+        }
+      }
+    </script>
+</html>
