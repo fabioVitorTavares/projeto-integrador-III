@@ -5,6 +5,7 @@ function limpar() {
   }
 }
 
+
 function cadastrar() {
   const inputs = document.getElementsByClassName("input");
   const obj = {};
